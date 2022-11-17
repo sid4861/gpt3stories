@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { motion } from "framer-motion";
 
 export default function Home() {
 
@@ -82,6 +83,28 @@ export default function Home() {
     }
   }
 
+  //framer motion
+  const parent = {
+    hidden: {
+      opacity: 1
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.5
+      }
+    }
+  }
+  const children = {
+    hidden: {
+      opacity: 0
+    },
+    visible: {
+      opacity: 1,
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -91,25 +114,40 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <motion.h1
+          className={styles.title}
+          initial={{ opacity: 0, y: "-100%" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           Micro-fiction stories for kids using GPT-3.
-        </h1>
-        <div className={styles.steps}>
-          <div className={styles.step} >
+        </motion.h1>
+        <motion.div
+          className={styles.steps}
+          variants={parent}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={children} className={styles.step} >
             <span className={styles.bullet} >1</span>
             <span>Select a genre</span>
-          </div>
-          <div className={styles.step} >
+          </motion.div>
+          <motion.div variants={children} className={styles.step} >
             <span className={styles.bullet} >2</span>
             <span>Select characters</span>
-          </div>
-          <div className={styles.step} >
+          </motion.div>
+          <motion.div variants={children} className={styles.step} >
             <span className={styles.bullet} >3</span>
             <span>Click on Get a story</span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <form onSubmit={handleSubmit} className={styles.form} >
-          <div className={styles.genres} >
+          <motion.div
+            className={styles.genres}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.5, duration: 0.3 }}
+          >
             <div className={styles.genrestitle} >
               <p className={styles.cardtitle} >GENRES</p>
               {noGenreError && <p className={styles.error} >Please select a genre.</p>}
@@ -140,8 +178,13 @@ export default function Home() {
                 })
               }
             </div>
-          </div>
-          <div className={styles.genres} >
+          </motion.div>
+          <motion.div
+            className={styles.genres}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.5, duration: 0.3 }}
+          >
             <div className={styles.genrestitle}>
               <p className={styles.cardtitle} >CHARACTERS(select 2 characters)</p>
               <div>
@@ -175,7 +218,7 @@ export default function Home() {
                 })
               }
             </div>
-          </div>
+          </motion.div>
           <button type='submit' className={styles.submit} >
             Get a story
           </button>
