@@ -1,0 +1,190 @@
+.container {
+  background-image: linear-gradient(113.43deg, rgba(0, 0, 0, 0.25), rgba(53, 53, 53, 0.75)), url('../public/bg.png');
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+}
+.main {
+  min-height: 100vh;
+  padding: 1rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main>h1 {
+  color: var(--primary-text-color);
+  width: 48rem;
+  font-weight: 600;
+  font-size: 4rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main div.steps {
+  color: var(--primary-text-color);
+  margin-top: 3rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.main div.steps>.step {
+  font-size: 1rem;
+  display: flex;
+  gap: 1.05rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.main div.steps>.step>.bullet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 11px;
+  gap: 10px;
+
+  width: 33px;
+  height: 31px;
+
+  background: linear-gradient(92.48deg, rgba(0, 0, 0, 0.4) 0%, rgba(54, 54, 54, 0.4) 100%);
+  border-radius: 130px;
+}
+
+form.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .genres {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: linear-gradient(92.48deg, rgba(0, 0, 0, 0.4) 0%, rgba(54, 54, 54, 0.4) 100%);
+  border-radius: 50px;
+  margin-top: 4rem;
+}
+
+form .cardtitle {
+  color: var(--primary-text-color);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+form .genrescard {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+
+form .radioinput {
+  display: flex;
+  align-items: center;
+}
+
+form .radioinputlabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+form .radioinputlabel>.emoji {
+  font-size:2rem;
+  position: relative;
+  left: 0.5rem;
+}
+
+form .radioinputlabel>.radioinputtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary-text-color);
+}
+
+form .submit {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+  align-self: center;
+  border: none;
+  margin-top: 3rem;
+  padding: 1rem 12rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+form .submit:hover {
+  background-color: var(--primary-color-dark);
+}
+
+
+.footer {
+  display: flex;
+  color: var(--primary-text-color);
+  flex: 1;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.genrestitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width:768px) {
+  form .genrescard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .main div.steps {
+    flex-direction: column;
+    margin-top: 0;
+  }
+  .container {
+    overflow-x: hidden;
+    background-position: right;
+  }
+
+  .main>h1 {
+    width: 22rem;
+    font-size: 3rem;
+  }
+  form .genres {
+    width: 90vw;
+    align-items: center;
+  }
+  .genrestitle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  form .submit {
+    padding: 1rem 8rem;
+  }
+
+}
