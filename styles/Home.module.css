@@ -69,13 +69,14 @@ form.form {
   align-items: center;
 }
 
-form .genres {
+ .genres {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
   background: linear-gradient(92.48deg, rgba(0, 0, 0, 0.4) 0%, rgba(54, 54, 54, 0.4) 100%);
   border-radius: 50px;
   margin-top: 4rem;
+  color: var(--primary-text-color);
 }
 
 form .cardtitle {
@@ -114,7 +115,7 @@ form .radioinputlabel>.radioinputtitle {
   color: var(--primary-text-color);
 }
 
-form .submit {
+ .submit {
   color: var(--primary-text-color);
   background-color: var(--primary-color);
   align-self: center;
@@ -128,7 +129,7 @@ form .submit {
   font-weight: 600;
 }
 
-form .submit:hover {
+ .submit:hover {
   background-color: var(--primary-color-dark);
 }
 
@@ -155,6 +156,13 @@ form .submit:hover {
   justify-content: space-between;
 }
 
+.box {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+}
+
+
 @media screen and (max-width:768px) {
   form .genrescard {
     display: flex;
@@ -174,16 +182,17 @@ form .submit:hover {
     width: 22rem;
     font-size: 3rem;
   }
-  form .genres {
+   .genres {
     width: 90vw;
     align-items: center;
+    color: var(--primary-text-color);
   }
   .genrestitle {
     flex-direction: column;
     align-items: center;
   }
   
-  form .submit {
+  .submit {
     padding: 1rem 8rem;
   }
 

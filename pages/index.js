@@ -11,6 +11,8 @@ export default function Home() {
   const [charLimitError, setCharLimitError] = useState(false);
   const [noCharError, setNoCharError] = useState(false);
   const [noGenreError, setNoGenreError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [story, setStory] = useState(null);
 
   const genres = [
     [{ emoji: "🧚", name: "Fantasy" }, { emoji: "🕵️‍♀️", name: "Mystery" }],
@@ -20,10 +22,10 @@ export default function Home() {
   ];
 
   const chars = [
-    [{ emoji: "👸", name: "Kings & queens" }, { emoji: "️🕵️‍♀️", name: "Detectives" }],
-    [{ emoji: "🐉", name: "Dragons" }, { emoji: "🦄", name: "Unicorns" }],
-    [{ emoji: "👩‍🔬", name: "Scientists" }, { emoji: "🐐", name: "Animals" }],
-    [{ emoji: "🧙‍♂️️", name: "Wizards" }, { emoji: "🎃", name: "Ghosts" }]
+    [{ emoji: "👸", name: "King & queen" }, { emoji: "️🕵️‍♀️", name: "Detective" }],
+    [{ emoji: "🐉", name: "Dragon" }, { emoji: "🦄", name: "Unicorn" }],
+    [{ emoji: "👩‍🔬", name: "Scientist" }, { emoji: "🐐", name: "Animal" }],
+    [{ emoji: "🧙‍♂️️", name: "Wizard" }, { emoji: "🎃", name: "Ghost" }]
   ];
 
   function handleCheckbox(event) {
@@ -57,6 +59,7 @@ export default function Home() {
       setNoCharError(false);
       setNoGenreError(false);
       setCharLimitError(false);
+      setLoading(true);
       const data = {
         genre,
         characters
@@ -71,7 +74,8 @@ export default function Home() {
       };
       const response = await fetch("/api/gpt3", options);
       const result = await response.json();
-      console.log(result.data);
+      setLoading(false);
+      setStory(result.data);
     }
 
     if (!genre) {
@@ -81,6 +85,10 @@ export default function Home() {
     if (characters.length < 2) {
       setNoCharError(true);
     }
+  }
+
+  function handleNewStory() {
+    setStory(null);
   }
 
   //framer motion
@@ -202,14 +210,14 @@ export default function Home() {
                           <input type="checkbox" onChange={handleCheckbox} name={item[0].name} value={item[0].name} />
                           <div className={styles.radioinputlabel} >
                             <span className={styles.emoji} >{item[0].emoji}</span>
-                            <span className={styles.radioinputtitle} >{item[0].name}</span>
+                            <span className={styles.radioinputtitle} >a {item[0].name}</span>
                           </div>
                         </label>
                         <label className={styles.radioinput} >
                           <input type="checkbox" onChange={handleCheckbox} name={item[1].name} value={item[0].name} />
                           <div className={styles.radioinputlabel} >
                             <span className={styles.emoji} >{item[1].emoji}</span>
-                            <span className={styles.radioinputtitle} >{item[1].name}</span>
+                            <span className={styles.radioinputtitle} >a {item[1].name}</span>
                           </div>
                         </label>
                       </div>
@@ -219,10 +227,50 @@ export default function Home() {
               }
             </div>
           </motion.div>
-          <button type='submit' className={styles.submit} >
-            Get a story
-          </button>
+          {
+            !loading && !story
+            &&
+            <button type='submit' className={styles.submit} >
+              Get a story
+            </button>
+          }
+          {
+            loading
+            &&
+            <motion.div
+              className={styles.box}
+              animate={{
+                scale: [1, 2, 2, 1, 1],
+                rotate: [0, 0, 180, 180, 0],
+                borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+              }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.5, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 1
+              }}
+            />
+          }
+
         </form>
+        <div style={{ width: "min(50rem, 90%)" }} >
+          {
+            story
+            &&
+            <div className={styles.genres} >
+              {story}
+            </div>
+          }
+        </div>
+        {
+            !loading && story
+            &&
+            <button className={styles.submit} onClick={handleNewStory} >
+              Get a new one
+            </button>
+          }
       </main>
 
       <footer className={styles.footer}>
