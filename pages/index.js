@@ -117,7 +117,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>GPT3 Stories</title>
-        <meta name="description" content="Generated micro-fiction stories for kids using GPT-3" />
+        <meta name="description" content="Create micro-fiction stories for kids using GPT-3" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
